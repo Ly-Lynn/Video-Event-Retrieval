@@ -1,9 +1,16 @@
 .grid {
-    position: relative;
-    width: 120px;
-    height: 120px;
-    border: 1px solid #000;
-    margin: 20px auto;
-    cursor: crosshair;
-  }
-  
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border: 1px solid #000;
+  margin: 20px auto;
+  cursor: crosshair;
+}
+
+.dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: red;
+  border-radius: 50%;
+}

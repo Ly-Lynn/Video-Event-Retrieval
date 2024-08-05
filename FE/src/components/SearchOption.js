@@ -3,7 +3,7 @@ import { Form, Button, ToggleButton, ToggleButtonGroup, Row, Col, Dropdown } fro
 import Grid from './PositionGrid';
 
 const SelectComponent = ({ controlId, label, value, onChange, options }) => (
-  <Form.Group controlId={controlId} style={{width:'30%'}}>
+  <Form.Group controlId={controlId} style={{width:'50%'}}>
     <Form.Label>{label}</Form.Label>
     <Form.Control as="select" value={value} onChange={onChange}>
       <option value="">Select an option</option>
@@ -18,6 +18,7 @@ const SearchOption = () => {
   const [selectedOption, setSelectedOption] = useState(1);
   const [selectValues, setSelectValues] = useState({ select1: '', select2: '', select3: '' });
   const [textareaValues, setTextareaValues] = useState({});
+  const [clicks, setClicks] = useState({});
 
   const formGroups = {
     1: { controlId: "searchText", placeholder: "Enter query here...", res: NaN},
@@ -41,10 +42,19 @@ const SearchOption = () => {
       return newValues;
     });
   };
+  const handleGridClick = (selectKey, coords) => {
+    setClicks((prevClicks) => {
+      const newClicks = { ...prevClicks };
+      newClicks[selectKey] = [coords];
+      console.log(newClicks)
+      return newClicks;
+    });
+  };
+
 
   return (
     <Row className="justify-content-center">
-      <Col>
+      <Col className='mt-3 mb-3'>
         <Form className="border p-3">
           <Dropdown className="row mb-3">
             <Dropdown.Toggle
@@ -84,16 +94,14 @@ const SearchOption = () => {
 
           {selectedOption === 5 && (
             ['select1', 'select2', 'select3'].map((selectKey, index) => (
-              <Col>
+              <Col key={selectKey} className='d-flex mb-3'>
                 <SelectComponent
-                  key={selectKey}
                   controlId={selectKey}
-                  // label={`Select ${index + 1}`}
                   value={selectValues[selectKey]}
                   onChange={e => handleSelectChange(selectKey, e.target.value)}
                   options={classes}
                 />
-                <Grid/>
+                <Grid selectKey={selectKey} clicks={clicks} onGridClick={handleGridClick} />
               </Col>
             ))
           )}
