@@ -1,0 +1,28 @@
+/* RetrievalRes.css */
+
+.image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .img-descript {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-container:hover .img-descript {
+    opacity: 1;
+  }
+  
