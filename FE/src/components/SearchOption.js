@@ -23,7 +23,7 @@ const SearchOption = () => {
   const [selectValues, setSelectValues] = useState({ select1: '', select2: '', select3: '' });
   const [textareaValues, setTextareaValues] = useState({});
   const [clicks, setClicks] = useState({});
-
+  const [confirm, setComfirm] = useState({})
   const formGroups = {
     1: { controlId: "searchText", placeholder: "Enter query here...", res: NaN},
     3: { controlId: "ocrText", placeholder: "Enter OCR text here...", res: NaN},
@@ -65,7 +65,9 @@ const SearchOption = () => {
       return newClicks;
     });
   };
+  const handleConfirmSearch = () => {
 
+  }
 
   return (
     <Row className="justify-content-center">
@@ -74,8 +76,7 @@ const SearchOption = () => {
           <Dropdown className="row mb-3">
             <Dropdown.Toggle
               id="dropdown-basic"
-              style={{ backgroundColor: 'white', color: 'green', borderRadius: 0, borderColor: 'green' }}
-            >
+              style={{ backgroundColor: 'white', color: 'green', borderRadius: 0, borderColor: 'green' }}>
               Search options
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -83,7 +84,7 @@ const SearchOption = () => {
               <Dropdown.Item href="#/action-2">VQA</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-
+          {/* -----------------------Text to Image ----------------------------- */}
           <ToggleButtonGroup
             type="radio"
             name="options"
@@ -96,7 +97,6 @@ const SearchOption = () => {
             <ToggleButton className="btn-success" id="tbg-radio-4" value={4}>ASR</ToggleButton>
             <ToggleButton className="btn-success" id="tbg-radio-5" value={5}>OBJECT</ToggleButton>
           </ToggleButtonGroup>
-
           {formGroups[selectedOption] && selectedOption !== 5 && (
             <Form.Group controlId={formGroups[selectedOption].controlId}>
               <Form.Control 
@@ -106,7 +106,6 @@ const SearchOption = () => {
               onChange={handleTextChange(formGroups[selectedOption].controlId)} />
             </Form.Group>
           )}
-
           {selectedOption === 5 && (
             ['select1', 'select2', 'select3'].map((selectKey, index) => (
               <Col key={selectKey} className='d-flex mb-3'>
