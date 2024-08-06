@@ -12,7 +12,7 @@ function App() {
       <h1 className='text-center '>Video Retrieval</h1>
       <Row  style={{margin:10}}>
         <Col className='border' md={4} >
-          <RetrievalBar/>
+          {/* <RetrievalBar/> */}
           <SearchOption/>
         </Col>
         <Col className='border' md={8}>
