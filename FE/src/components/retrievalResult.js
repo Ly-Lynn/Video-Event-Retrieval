@@ -6,7 +6,7 @@ function RetrievalRes() {
     // Gọi API lấy kết quả từ database, lưu vào images
   const images = [
     { id: 1, src: 'https://canadiangeographic.ca/wp-content/uploads/2022/08/35785844-Winters_Colours-1024x715.jpg', description: 'Description 1' },
-    { id: 2, src: 'https://wallpaperaccess.com/full/3829627.jpg', description: 'Description 2' },
+    { id: 2, src: 'https://canadiangeographic.ca/wp-content/uploads/2022/08/35785844-Winters_Colours-1024x715.jpg', description: 'Description 2' },
   ];
   return (
     <Row>

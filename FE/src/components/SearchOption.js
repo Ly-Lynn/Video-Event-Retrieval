@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { Form, Button, ToggleButton, ToggleButtonGroup, Row, Col, Dropdown } from 'react-bootstrap';
 import Grid from './PositionGrid';
+import Select from 'react-select';
 
-const SelectComponent = ({ controlId, label, value, onChange, options }) => (
-  <Form.Group controlId={controlId} style={{width:'50%'}}>
-    <Form.Label>{label}</Form.Label>
-    <Form.Control as="select" value={value} onChange={onChange}>
-      <option value="">Select an option</option>
-      {options.map((option, index) => (
-        <option key={index} value={option}>{option}</option>
-      ))}
-    </Form.Control>
-  </Form.Group>
-);
+const SelectComponent = ({ value, onChange, options }) => {
+  const selectOptions = options.map(option => ({ value: option, label: option }));
+
+  return (
+    <div style={{ width: '50%' }}>
+      <Select
+        value={selectOptions.find(option => option.value === value)}
+        onChange={selectedOption => onChange(selectedOption.value)}
+        options={selectOptions}
+        placeholder="Select an option"
+      />
+    </div>
+  );
+};
 
 const SearchOption = () => {
   const [selectedOption, setSelectedOption] = useState(1);
@@ -27,7 +31,18 @@ const SearchOption = () => {
     5: { controlId: "objectText", placeholder: "Enter object text here...", res:[] }
   };
 
-  const classes = ["Dog", "Cat"]
+  const classes = ['Person',
+    'Vehicle',
+    'Outdoor',
+    'Animal',
+    'Accessory',
+    'Sports',
+    'Kitchen',
+    'Food',
+    'Furniture',
+    'Electronic',
+    'Appliance',
+    'Indoor']
 
   const handleSelectChange = (key, value) => {
     setSelectValues(prevValues => {
@@ -98,7 +113,7 @@ const SearchOption = () => {
                 <SelectComponent
                   controlId={selectKey}
                   value={selectValues[selectKey]}
-                  onChange={e => handleSelectChange(selectKey, e.target.value)}
+                  onChange={value => handleSelectChange(selectKey, value)}
                   options={classes}
                 />
                 <Grid selectKey={selectKey} clicks={clicks} onGridClick={handleGridClick} />
@@ -106,9 +121,11 @@ const SearchOption = () => {
             ))
           )}
 
-          <div className="text-center">
+          <Col className="text-center d-flex justify-content-center">
             <Button variant="primary" className="mt-1">SEARCH</Button>
-          </div>
+            <div style={{paddingLeft:'5%'}}></div> 
+            <Button variant='danger' className='mt-1'>RESET</Button>
+          </Col>
         </Form>
       </Col>
     </Row>
