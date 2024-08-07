@@ -17,3 +17,14 @@ If you want to use Milvus database:
     ```
     docker start $(docker ps -a -q)
     ```
+# Open React Project 
+* **Builds** the app for production to the `FE` folder.
+    ```
+    cd FE
+    npm run build
+    ```
+* **Runs** the app in the development mode.
+    ```
+    npm start
+    ``` 
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
