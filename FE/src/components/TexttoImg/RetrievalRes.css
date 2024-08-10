@@ -1,11 +1,13 @@
 /* RetrievalRes.css */
-
+.material-symbols-outlined {
+  margin-left: 0.3rem;
+}
 .image-container {
     position: relative;
     display: inline-block;
   }
   
-  .img-descript {
+  .hover-container {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -17,12 +19,13 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     height: 100%;
+    
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  .image-container:hover .img-descript {
+  .image-container:hover .hover-container{
     opacity: 1;
   }
   
