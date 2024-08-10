@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Modal from 'react-bootstrap/Modal';
 import './RetrievalRes.css';
+import ImgImg from '../ImgtoImg/ImgImg';
 
 function RetrievalRes() {
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
   const imagesPerRow = 6;
   const rowsPerPage = 5;
   const imagesPerPage = imagesPerRow * rowsPerPage;
@@ -95,10 +95,16 @@ function RetrievalRes() {
         {selectedImages.map((image, index) => (
           <Col key={index} md={2} className="mb-1" style={{padding: '0px'}}>
             <Card>
-              <div className='image-container' onClick={() => handleImageClick(image)}>
+              <div className='image-container'>
                 <div className='img-id text-center'>Frame ID: {image.id}</div>
                 <Card.Img variant="top" src={image.src} style={{ maxWidth: '300px', height: 'auto', objectFit: 'cover' }} />
-                <div className='img-descript'>{image.description}</div>
+                  <Row className='hover-container text-center' style={{marginLeft:0}}>
+                    <div className='img-descript'>{image.description}</div>
+                    <Col>
+                      <span class="material-symbols-outlined" onClick={() => handleImageClick(image)} style={{cursor:'pointer'}}>info</span> 
+                      <span class="material-symbols-outlined" onClick={ImgImg} style={{cursor:'pointer'}}>photo_library</span>
+                    </Col>
+                  </Row>
               </div>
             </Card>
           </Col>
