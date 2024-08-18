@@ -1,29 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, ToggleButton, ToggleButtonGroup, Row, Col } from 'react-bootstrap';
-import Grid from './PositionGrid';
-import Select from 'react-select';
-import { Slider } from '@mui/material';
-
-const SelectComponent = ({ value, onChange, options }) => {
-  const selectOptions = options.map(option => ({ value: option, label: option }));
-
-  return (
-    <div style={{ width: '50%' }}>
-      <Select
-        value={selectOptions.find(option => option.value === value)}
-        onChange={selectedOption => onChange(selectedOption.value)}
-        options={selectOptions}
-        placeholder="Select an option"
-      />
-    </div>
-  );
-};
+import Grid from './OD/PositionGrid';
+import { Slider, Box, Stack } from '@mui/material';
+import ODSelection from './OD/ODSelection';
+import ODRes from './OD/ODRes';
 
 const SearchOption = () => {
   const [selectedOption, setSelectedOption] = useState(0);
-  const [selectValues, setSelectValues] = useState({ select1: '', select2: '', select3: '' });
   const [textareaValues, setTextareaValues] = useState({});
-  const [clicks, setClicks] = useState({});
   const [w, setW] = useState({ OCR: 50, ASR: 50, OD: 50 });
   
   const options = [
@@ -33,29 +17,37 @@ const SearchOption = () => {
     { name: 'OD', controlId: "objectText", placeholder: "Enter object text here..." }
   ];
 
-  const classes = ['Person', 'Vehicle', 'Outdoor', 'Animal', 'Sea Creature', 'Accessory', 'Sports', 'Kitchen', 'Food', 'Furniture', 'Electronic', 'Appliance', 'Indoor'];
+  const objects = ['Person', 'Vehicle', 'Outdoor', 'Animal', 'Sea Creature', 'Accessory', 'Sports', 'Kitchen', 'Food', 'Furniture', 'Electronic', 'Appliance', 'Indoor'];
+  const [selectedObject, setSelectedObject] = useState('');
+  const [results, setResults] = useState([]);
+  const [reset, setReset] = useState(false);
 
-  const handleSelectChange = (key, value) => {
-    setSelectValues(prevValues => {
-      const newValues = { ...prevValues, [key]: value };
-      return newValues;
-    });
+  const handleAddBox = (box) => {
+    if (selectedObject) {
+      const newVal = [...results, { object: selectedObject, coordinates: [box.startX, box.startY, box.endX, box.endY] }]; 
+      setResults(newVal);
+      setSelectedObject(''); // Reset selection after confirmation
+    }
   };
+  // useEffect(() => {
+  //   console.log("Kết quả OD: ", results);
+  // }, [results]);
+
+  const handleReset = () => {
+    setResults([]); // Clear results
+    setReset(true); // Trigger reset
+  };
+  // useEffect(() => {
+  //   if (reset) {
+  //     setReset(false); // Reset state flag
+  //   }
+  // }, [reset]);
 
   const handleTextChange = (controlId) => (event) => {
     setTextareaValues((prevValues) => {
       const newValues = {...prevValues, [controlId]: event.target.value};
       // console.log(newValues)
       return newValues;
-    });
-  };
-
-  const handleGridClick = (selectKey, coords) => {
-    setClicks((prevClicks) => {
-      const newClicks = { ...prevClicks };
-      newClicks[selectKey] = [coords];
-      console.log(newClicks)
-      return newClicks;
     });
   };
 
@@ -79,13 +71,11 @@ const SearchOption = () => {
         weight: w.ASR
       },
       od: {
-        objects: Object.keys(selectValues).map(selectKey => ({
-          name: selectValues[selectKey],
-          position: clicks[selectKey] || []
-        })),
+        results,
         weight: w.OD
       }
     };
+    // setReset(false);
     console.log(result);
   };
   return (
@@ -115,18 +105,20 @@ const SearchOption = () => {
             </Form.Group>
           )}
           {selectedOption === 3 && (
-            ['select1', 'select2', 'select3'].map((selectKey) => (
-              <Col key={selectKey} className='d-flex mb-3'>
-                <SelectComponent
-                  controlId={selectKey}
-                  value={selectValues[selectKey]}
-                  onChange={value => handleSelectChange(selectKey, value)}
-                  options={classes}
+            <Stack spacing={2} alignItems='center' justifyContent="center">
+              <Stack spacing={2} direction="row">
+                <ODSelection
+                  objects={objects}
+                  selectedObject={selectedObject}
+                  onSelectObject={setSelectedObject}
                 />
-                <Grid selectKey={selectKey} clicks={clicks} onGridClick={handleGridClick} />
-              </Col>
-            ))
+                <Button onClick={handleReset}>Reset</Button>
+              </Stack>
+              <Grid onAddBox={handleAddBox} selectedObject={selectedObject} onReset={reset} confirmedRes={results}/>
+              <ODRes results={results} />
+            </Stack>
           )}
+          <div style={{padding:"0.5rem"}} />
           {selectedOption !== 0 && (
                 <Form.Group>
                   <Form.Label>{options[selectedOption].name} Weight: {w[options[selectedOption].name]}</Form.Label>
