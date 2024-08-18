@@ -1,0 +1,37 @@
+/* src/App.css */
+.grid {
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  border: 1px solid black;
+  position: relative;
+}
+
+.box {
+  position: absolute;
+  border: 2px dashed red;
+  background-color: rgba(255, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.confirmed {
+  border: 2px solid green;
+}
+
+.confirm-btn, .cancel-btn {
+  position: relative;
+  top: -10px;
+  right: -10px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+/* .active .confirm-btn, .active .cancel-btn {
+  display: block;
+} */
+
+.confirmed .confirm-btn, .confirmed .cancel-btn {
+  display: none;
+}
