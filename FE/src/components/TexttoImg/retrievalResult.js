@@ -11,51 +11,42 @@ function RetrievalRes() {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const imagesPerRow = 6;
-  const rowsPerPage = 5;
+  const rowsPerPage = 4;
   const imagesPerPage = imagesPerRow * rowsPerPage;
 
   const images = [
-    { id: 1, src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 2, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 3, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 4, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 5, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 6, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 7, src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 8, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 9, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 10, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 11, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 12, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 13, src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 14, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 15, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 16, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 17, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 6, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 1, src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 2, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 3, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 4, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 5, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 6, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 1, src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 2, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 3, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 4, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 5, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 6, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 2, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 3, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 4, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 5, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 6, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 1, src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 2, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 3, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 4, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 5, src: "/test_imgs/img3.png", description: 'Description 2' },
-    { id: 6, src: "/test_imgs/img3.png", description: 'Description 2' }
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
   ];
 
   const totalPages = Math.ceil(images.length / imagesPerPage);
@@ -96,7 +87,7 @@ function RetrievalRes() {
           <Col key={index} md={2} className="mb-1" style={{padding: '0px'}}>
             <Card>
               <div className='image-container'>
-                <div className='img-id text-center'>Frame ID: {image.id}</div>
+                <div className='img-id text-center'>{image.id} - {image.vid}</div>
                 <Card.Img variant="top" src={image.src} style={{ maxWidth: '300px', height: 'auto', objectFit: 'cover' }} />
                   <Row className='hover-container text-center' style={{marginLeft:0}}>
                     <div className='img-descript'>{image.description}</div>
