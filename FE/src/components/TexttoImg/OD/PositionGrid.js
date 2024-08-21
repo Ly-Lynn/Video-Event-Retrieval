@@ -84,10 +84,9 @@ const Grid = ({ onAddBox, selectedObject, onReset, confirmedRes}) => {
       top: Math.min(box['coordinates'][1], box['coordinates'][3]),
       width: Math.abs(box['coordinates'][2] - box['coordinates'][0]),
       height: Math.abs(box['coordinates'][3] - box['coordinates'][1]),
-      position: 'absolute',  // Đảm bảo hộp được định vị chính xác
+      position: 'absolute',  
     }}
   >
-    {/* Nhãn */}
     <span
       className="box-label"
       style={{
