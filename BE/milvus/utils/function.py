@@ -2,7 +2,8 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 
-from .import clip_manager
+from vector_processing import clip_manager
+from vector_processing.utils.function import *
 from .import first_collection_constant
 from PIL import Image
 from pymilvus import Collection, connections, utility
@@ -54,18 +55,6 @@ def drop_collection(collection_name:str):
         print(f"Collection {collection_name} dropped.")
     else:
         print(f"Collection {collection_name} does not exist.")
-
-
-def get_image_embedding(image_path:str):
-    '''
-    This fuction will be changed in the future
-    '''
-    image = Image.open(image_path)
-    
-    inputs = clip_manager.processor(images=image, return_tensors="pt", padding=True)
-    with torch.no_grad():
-        image_features = clip_manager.model.get_image_features(**inputs)
-    return image_features[0].cpu().numpy()
 
 
 def add_image_to_db(image_path:str, collection_name:str):
@@ -149,10 +138,7 @@ def search_result_in_collection_1(text_query:str, metric_type=None, nprobe=10):
     if metric_type != global_metric_type:
         raise ValueError(f"Metric type '{metric_type}' does not match the expected metric type '{global_metric_type}' for this operation.")
 
-    inputs = clip_manager.processor(text=text_query, return_tensors="pt", padding=True)
-    with torch.no_grad():
-        text_features = clip_manager.model.get_text_features(**inputs)
-    text_embedding = text_features[0].cpu().numpy()
+    text_embedding = get_text_vector(text_query)
 
     collection = Collection(name=collection_1_name)
     search_params = {

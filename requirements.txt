@@ -5,3 +5,10 @@ flask==3.0.3
 transformer==4.43.4
 pymilvus==2.4.4
 matplotlib==3.9.0
+faiss-gpu
+opencv-python-headless
+numpy
+tqdm
+scikit-image
+scikit-learn
+tensorflow
