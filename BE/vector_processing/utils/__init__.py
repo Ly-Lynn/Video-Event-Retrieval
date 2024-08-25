@@ -4,7 +4,7 @@ from transformers import CLIPProcessor, CLIPModel
 
 class CLIPManager:
     def __init__(self):
-        self.model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+        self.model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").to("cuda")
         self.processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
 
 clip_manager = CLIPManager()

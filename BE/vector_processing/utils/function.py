@@ -26,7 +26,7 @@ def get_image_embedding(input):
     
     inputs = clip_manager.processor(images=image, return_tensors="pt", padding=True)
     with torch.no_grad():
-        image_features = clip_manager.model.get_image_features(**inputs)
+        image_features = clip_manager.model.get_image_features(**inputs.to("cuda")).to("cuda")
     return image_features[0].cpu().numpy()
 
 def get_text_vector(text:str):
