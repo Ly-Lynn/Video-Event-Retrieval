@@ -57,20 +57,3 @@ def keyframes_folder(root_video, root_output):
         print(f"Get frame from {processing_video} and store at {output_video_path}")
         output_video_path.mkdir(parents=True)
         select_keyframes(str(processing_video), 0.99, output_video_path)
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-
-    # Add arguments
-    parser.add_argument("rootinput", type=str)
-    parser.add_argument("rootoutput", type=str)
-
-    # Parse the arguments
-    args = parser.parse_args()
-
-    # Access the string arguments
-    root_input = args.rootinput
-    root_output = args.rootoutput
-
-    keyframes_folder(root_input, root_output)
