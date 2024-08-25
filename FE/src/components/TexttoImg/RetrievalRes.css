@@ -28,4 +28,6 @@
   .image-container:hover .hover-container{
     opacity: 1;
   }
-  
+  .active {
+    font-weight: bold;
+  }

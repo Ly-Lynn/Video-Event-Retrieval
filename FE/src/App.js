@@ -7,6 +7,7 @@ import CusTabs from './components/Tab';
 import ImgImg from './components/ImgtoImg/ImgImg';
 import VQA from './components/VQA/VQA';
 import {useState} from 'react';
+import ErrorBoundary from './components/debug/ErrorBoundary';
 
 const tabs = [
   { title: 'Text to Image', component: <TextImg /> },
