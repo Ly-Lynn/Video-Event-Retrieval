@@ -1,5 +1,9 @@
 from . import *
 from vector_processing.utils.function import *
+import pathlib
+from tqdm import tqdm
+import argparse
+
 
 def select_keyframes(video_path:str, thres:float, output_path=str, step=10):
     video_name = os.path.basename(video_path).split(".")[0]
@@ -35,3 +39,18 @@ def save_keyframe(keyframe ,idx, output_folder_path, video_name:str):
         os.makedirs(output_folder_path)
     frame_filename = os.path.join(output_folder_path, f"{video_name}_{idx:06d}.png")
     cv2.imwrite(frame_filename, keyframe)
+
+
+def keyframes_folder(root_video: pathlib.Path, root_output: pathlib.Path):
+    videos = root_video.rglob("*.mp4")
+
+    for processing_video in videos:
+        output_video_path = pathlib.Path(str(processing_video.parent / processing_video.stem).replace(str(root_video), str(root_output)))
+
+        if output_video_path.exists():
+            print(f"Already get frame from {processing_video} and store at {output_video_path}, skip")
+            continue
+
+        print(f"Get frame from {processing_video} and store at {output_video_path}")
+        # output_video_path.mkdir(parents=True)
+        # select_keyframes(str(processing_video), 0.99, output_video_path)
