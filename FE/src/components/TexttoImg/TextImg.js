@@ -3,8 +3,43 @@ import { Navbar, Nav, Button, Row, Col } from "react-bootstrap";
 import SearchOption from "./SearchOption";
 import RetrievalRes from "./retrievalResult";
 import ErrorBoundary from "../debug/ErrorBoundary";
+import StageSearch from "./StageSearch/StageSearch";
 
 function TextImg() {
+  const imageData = [
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  ];
   const [value, setValue] = useState(0);
   const [tabList, setTabList] = useState([{ key: 0, id: 0 }]);
   const [tabData, setTabData] = useState({
@@ -17,6 +52,15 @@ function TextImg() {
         reset: false,
       },
     });
+  
+  const [stageResults, setStageResults] = useState([]);
+  const [showStageSearch, setShowStageSearch] = useState(false);
+  const [stageConfirm, setStageConfirm] = useState(false);
+  const [stageRes, setStageRes] = useState([])
+
+  useEffect(() => {
+    setShowStageSearch(tabList.length > 1);
+  }, [tabList]);
 
 
     // Add a new tab
@@ -79,31 +123,85 @@ function TextImg() {
         [tabId]: updateFn(prevData[tabId]),
       }));
     };
+    const handleSearch = (tabId, result) => {
+      setStageResults((prevResults) => [...prevResults, { tabId, data: result }]);
+    };
+  
+    const handleConfirmStageSearch = () => {
+      const imageData = [
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+      ];
+      setStageConfirm(true);
+      setStageResults([]);
+      // setShowStageSearch(false);
+    };
+
+    const handleDeleteResult = (tabId) => {
+      setStageResults((prevResults) => prevResults.filter(result => result.tabId !== tabId));
+    };
 
   return (
     <div>
-    <Navbar >
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav variant="tabs" >
-          {tabList.map((tab) => (
-            <Nav.Item key={tab.key}>
-              <Nav.Link
-                style={{display:"flex"}}
-                active={tab.id === value}
-                onClick={() => handleTabChange(tab.id)}
-              >
-                {"Stage " + tab.id}
-                <span onClick={(e) => deleteTab(e, tab.id)} class="material-symbols-outlined" style={{color:"red",fontWeight:"bolder"}}>close</span>
-              </Nav.Link>
-            </Nav.Item>
-          ))}
-          <div style={{display:"flex", alignItems:"center"}}>
-            <span class="material-symbols-outlined" style={{color:"green", fontWeight:"bolder", cursor:"pointer"}} onClick={addTab}>add</span>
-          </div>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+      <Navbar >
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav variant="tabs" >
+            {tabList.map((tab) => (
+              <Nav.Item key={tab.key}>
+                <Nav.Link
+                  style={{display:"flex"}}
+                  active={tab.id === value}
+                  onClick={() => handleTabChange(tab.id)}
+                >
+                  {"Stage " + tab.id}
+                  <span onClick={(e) => deleteTab(e, tab.id)} class="material-symbols-outlined" style={{color:"red",fontWeight:"bolder"}}>close</span>
+                </Nav.Link>
+              </Nav.Item>
+            ))}
+            <div style={{display:"flex", alignItems:"center"}}>
+              <span class="material-symbols-outlined" style={{color:"green", fontWeight:"bolder", cursor:"pointer"}} onClick={addTab}>add</span>
+            </div>
+            {stageConfirm && tabList.length > 1 && (
+              <Nav.Item>
+                <Nav.Link active={value === "results"} onClick={() => setValue("results")}>
+                  Results
+                </Nav.Link>
+              </Nav.Item>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
       {tabList.map(
         (tab) =>
           tab.id === value && (
@@ -113,16 +211,33 @@ function TextImg() {
                 <SearchOption
                   state={tabData[tab.id]}
                   setState={(newState) => saveTabData(tab.id, newState)}
+                  onSearch={(result) => handleSearch(tab.id, result)}
                 />
                 </ErrorBoundary>
               </Col>
               <Col md={8} className="border">
-                <RetrievalRes />
+                <RetrievalRes images = {imageData}/>
               </Col>
             </Row>
           )
       )}
-</div>    
+      {value === "results" && tabList.length > 1 && (
+        <Row style={{ margin: 10 }}>
+          <Col>
+            <RetrievalRes images={imageData} />
+          </Col>
+        </Row>
+      )}
+      {showStageSearch && (
+        <StageSearch
+        results={stageResults}
+        onConfirm={handleConfirmStageSearch}
+        show={showStageSearch}
+        onDeleteResult={handleDeleteResult} 
+      />
+      )}
+      
+    </div>    
   );
 }
 
