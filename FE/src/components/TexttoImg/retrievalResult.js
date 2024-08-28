@@ -6,7 +6,8 @@ import Modal from 'react-bootstrap/Modal';
 import './RetrievalRes.css';
 import ImgImg from '../ImgtoImg/ImgImg';
 
-function RetrievalRes() {
+function RetrievalRes(imagesObject) {
+  const images = imagesObject['images']
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -14,41 +15,7 @@ function RetrievalRes() {
   const rowsPerPage = 4;
   const imagesPerPage = imagesPerRow * rowsPerPage;
 
-  const images = [
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  ];
-
+  
   const totalPages = Math.ceil(images.length / imagesPerPage);
 
   const handlePageChange = (event, value) => {
