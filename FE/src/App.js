@@ -27,7 +27,7 @@ function App() {
 
   return (
     <Container fluid>
-      <h1 className='text-center '>Video Retrieval</h1>
+      <h1 className='text-center '>AI Challenge 2024</h1>
       <CusTabs tabs={tabs} currentTab={currentTab} onTabClick={handleTabClick} />
       <TabContent currentTab={currentTab}/>
     </Container>

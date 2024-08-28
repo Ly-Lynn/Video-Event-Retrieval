@@ -6,7 +6,7 @@ import ODSelection from './OD/ODSelection';
 import ODRes from './OD/ODRes';
 import ErrorBoundary from '../debug/ErrorBoundary';
 
-const SearchOption = ({ state, setState }) => {
+const SearchOption = ({ state, setState, onSearch }) => {
   // console.log("Kết quả: ", state);
   useEffect(() => {
     console.log("Kết quả: ", state);
@@ -60,6 +60,7 @@ const SearchOption = ({ state, setState }) => {
       },
     };
     console.log(result);
+    onSearch(result); 
   };
 
   return (
