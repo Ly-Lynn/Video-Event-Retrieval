@@ -1,8 +1,10 @@
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
+import os
 
-from vector_processing import clip_manager
+from vector_processing.utils import clip_manager
 from vector_processing.utils.function import *
 from .import first_collection_constant
 from PIL import Image
