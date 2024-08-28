@@ -71,6 +71,20 @@ def add_image_to_db(image_path:str, collection_name:str):
     print(f"Added image {image_path} to database.")
 
 
+def add_vector_to_db(vector, collection_name:str, image_path:str):
+    print("Running")
+
+    collection = Collection(name=collection_name)
+
+    entities = [
+        [vector.tolist()],  # image_embedding (FLOAT_VECTOR)
+        [image_path]  # image_path (VARCHAR)
+    ]
+
+    collection.insert(entities)
+    print(f"Added image {image_path} to database.")
+
+
 def check_collection_schema(collection_name:str):
     collection = Collection(name=collection_name)
     schema = collection.schema
