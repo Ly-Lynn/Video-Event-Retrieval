@@ -2,15 +2,8 @@ import os
 import base64
 import io
 from PIL import Image
-from object.VideoFrame import Frame
-# Xử lí stage
+from configs import configs
 from filters.stage_processing import frames_sorting
-# Xử lí OCR -> score
-from filters.ocr import scoreOCR
-# Xử lí ASR -> score
-from filters.asr import scoreASR
-# Xử lí object detection -> score
-from filters.od import scoreOD
 from filters.elasticSearch import search
 
 def get_data (data:dict):
@@ -18,15 +11,25 @@ def get_data (data:dict):
     ocr = data.get('ocr')
     asr = data.get('asr')
     od = data.get('od')
-
     return query, ocr, asr, od
 
-def encode_b64(images:list[Frame]) -> list:
+def encode64(np_image):
+    '''
+    Input: ảnh dạng numpy array 
+    Return: Encode image thành dạng base64
+    '''
+    np_img = Image.fromarray(np_img.astype('uint8'))
+    buffered = io.BytesIO()
+    np_img.save(buffered, format="PNG")
+    img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
+    return img_str
+
+def encode_b64(images) -> list:
     '''
     Input: list[Frame] là kết quả cuối cùng của quá trình truy vấn
-    Return: list các images được encode
+    Return: list các images được encode bằng hàm encode64
     '''
-def score_calculate(query_encoded, frame: Frame):
+def score_calculate(query_encoded, frame):
     '''
     Tính điểm cho 1 frame gồm tổng khoảng cách query tới frame + trọng số * điểm thành phần
     '''
@@ -58,6 +61,13 @@ def processing(data):
     Return: kết quả của hàm encode_b64
     '''
     if isinstance(data, dict):
+        '''
+            Truy vấn đơn với hàm search(query, type) với type là loại truy vấn (có loại nào thì truy vấn loại đó)
+            Sau đó sẽ đi qua hàm ranking để tính toán score và sort lần cuối
+        '''
         return
     elif isinstance(data, list):
+        '''
+            Nếu truy vấn stage thì sẽ truy vấn từng stage sau đó ghép kết quả với frames_sorting
+        '''
         return

@@ -8,9 +8,9 @@ import ErrorBoundary from '../debug/ErrorBoundary';
 
 const SearchOption = ({ state, setState, onSearch }) => {
   // console.log("Kết quả: ", state);
-  useEffect(() => {
-    console.log("Kết quả: ", state);
-  }, [state]);
+  // useEffect(() => {
+  //   console.log("Kết quả: ", state);
+  // }, [state]);
 
   const options = [
     { name: 'query', controlId: "searchText" },
