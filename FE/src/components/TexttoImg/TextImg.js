@@ -56,7 +56,7 @@ function TextImg() {
   const [stageResults, setStageResults] = useState([]);
   const [showStageSearch, setShowStageSearch] = useState(false);
   const [stageConfirm, setStageConfirm] = useState(false);
-  const [stageRes, setStageRes] = useState([])
+  // const [stageRes, setStageRes] = useState([])
 
   useEffect(() => {
     setShowStageSearch(tabList.length > 1);
@@ -128,6 +128,8 @@ function TextImg() {
     };
   
     const handleConfirmStageSearch = () => {
+      console.log("StageRes ",stageResults)
+      // gửi data stageResults về backend và lấy kết quả truy vấn (là mảng imageData) 
       const imageData = [
         { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
         { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
