@@ -10,3 +10,4 @@ def connect():
 
 # Automatically establish connection when this module is imported
 connect()
+

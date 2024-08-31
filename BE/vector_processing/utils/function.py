@@ -35,7 +35,7 @@ def get_text_vector(text:str):
     '''
     inputs = clip_manager.processor(text=text, return_tensors="pt", padding=True)
     with torch.no_grad():
-        text_features = clip_manager.model.get_text_features(**inputs)
+        text_features = clip_manager.model.get_text_features(**inputs.to("cuda")).to("cuda")
     return text_features[0].cpu().numpy()
 
 def vector_similarity(v1, v2):

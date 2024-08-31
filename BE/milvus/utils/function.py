@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 import sys
 import os
 
-from vector_processing.utils import clip_manager
-from vector_processing.utils.function import *
+from Multi_modality.vector_processing.utils import clip_manager
+from Multi_modality.vector_processing.utils.function import *
+from Multi_modality.encode_query import encode_query
 from .import first_collection_constant
 from PIL import Image
 from pymilvus import Collection, connections, utility
@@ -154,7 +155,7 @@ def search_result_in_collection_1(text_query:str, metric_type=None, nprobe=10):
     if metric_type != global_metric_type:
         raise ValueError(f"Metric type '{metric_type}' does not match the expected metric type '{global_metric_type}' for this operation.")
 
-    text_embedding = get_text_vector(text_query)
+    text_embedding = encode_query(text_query).cpu().numpy()[0].tolist()
 
     collection = Collection(name=collection_1_name)
     search_params = {
@@ -179,3 +180,6 @@ def search_result_in_collection_1(text_query:str, metric_type=None, nprobe=10):
                 print(f"Error loading image {image_path}: {e}")
         else:
             print(f"No valid image path found for result with distance: {result.distance}")
+
+def search_query(text_query:str):
+    search_result_in_collection_1(text_query, "L2")
