@@ -23,12 +23,12 @@ def search_od(images, input_objects):
 
 def search(query, search_type='ocr'):
     '''
-    Hàm search OCR/AS/OD 
+    Hàm search OCR/ASR/OD 
     Input: câu query
             nếu search OD thì query sẽ là list[dict{'object', 'coordinates'}]
     Return: list kết quả truy vấn từ cao xuống thấp
             [{"_index": "frames",
-                "_id": "frame_id",
+                "_id": "frame_id", #L01_V010000111
                 "_score": 10.567,
                 "_source": {
                     "ocr_res": "",
@@ -40,16 +40,55 @@ def search(query, search_type='ocr'):
     '''
     client = Elasticsearch(cloud_id=configs['CLOUD_ID'], api_key=configs['API_KEY'])
     if search_type == 'ocr' or search_type == 'asr':
+        query_terms = query.split() 
+
         search_query = {
             "query": {
-                "should":[
-                    {"match": {'ocr_res' if search_type=='ocr' else 'asr_res' : query}}
-                ]
+                "function_score": {
+                    "query": {
+                        "bool": {
+                            "should": [
+                                {
+                                    "bool": {
+                                        "must": [
+                                            {"match": {'ocr_res' if search_type == 'ocr' else 'asr_res': term}}
+                                            for term in query_terms
+                                        ]
+                                    }
+                                },
+                                {
+                                    "bool": {
+                                        "should": [
+                                            {"match": {'ocr_res' if search_type == 'ocr' else 'asr_res': term}}
+                                            for term in query_terms
+                                        ],
+                                        "minimum_should_match": 1
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "functions": [
+                        {
+                            "filter": {
+                                "bool": {
+                                    "must": [
+                                        {"match": {'ocr_res' if search_type == 'ocr' else 'asr_res': term}}
+                                        for term in query_terms
+                                    ]
+                                }
+                            },
+                            "weight": 10  
+                        }
+                    ],
+                    "boost_mode": "multiply" 
+                }
             },
             "sort": [
-                {"_score": {"order": "desc"}}  
+                {"_id": {"order": "asc"}} 
             ]
         }
+
         results = client.search(index="frames", body=search_query)
         results = results['hits']['hits']
     if search_type=='od':
