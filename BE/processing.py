@@ -13,7 +13,13 @@ def get_data (data:dict):
     od = data.get('od')
     return query, ocr, asr, od
 
-def encode64(np_image):
+def get_image_from_ID(frameId):
+    '''
+        Lấy frame từ database thông qua ID: tên vid + idframe (6 chữ số)
+    '''
+
+
+def encode64(np_img):
     '''
     Input: ảnh dạng numpy array 
     Return: Encode image thành dạng base64
@@ -49,8 +55,13 @@ def ranking(query_encoded, listOCR, w_ocr, listASR, w_asr, listOD, w_od):
                     "od_res": 
                 },{},...] 
         w_ocr, w_asr, w_od: trọng số ocr, asr, od
-    Return: list các dict {'id':frame.id, 'info':Frame, 'score': float} 
-            với score là tổng số điểm cuối cùng được sắp xếp từ cao xuống thấp theo score
+    Return: list các dict {'images': ,
+                            'id':frame id, 
+                            'vid': video, 
+                            'info':{'ocr_res':, 'asr_res': , 'od_res':}, 
+                            'score': float} 
+                với score là tổng số điểm cuối cùng 
+            được sắp xếp từ cao xuống thấp theo score
     '''
 
 def processing(data):
