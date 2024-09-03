@@ -6,40 +6,40 @@ import ErrorBoundary from "../debug/ErrorBoundary";
 import StageSearch from "./StageSearch/StageSearch";
 
 function TextImg() {
-  const imageData = [
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-    { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  ];
+  // const imageData = [
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
+  // ];
   const [value, setValue] = useState(0);
   const [tabList, setTabList] = useState([{ key: 0, id: 0 }]);
   const [tabData, setTabData] = useState({
@@ -57,6 +57,7 @@ function TextImg() {
   const [showStageSearch, setShowStageSearch] = useState(false);
   const [stageConfirm, setStageConfirm] = useState(false);
   // const [stageRes, setStageRes] = useState([])
+  const [singleRes, setSingleRes] = useState([]);
 
   useEffect(() => {
     setShowStageSearch(tabList.length > 1);
@@ -125,45 +126,11 @@ function TextImg() {
     };
     const handleSearch = (tabId, result) => {
       setStageResults((prevResults) => [...prevResults, { tabId, data: result }]);
+      console.log("res",result)
+      setSingleRes(result);
     };
   
-    const handleConfirmStageSearch = () => {
-      console.log("StageRes ",stageResults)
-      // gửi data stageResults về backend và lấy kết quả truy vấn (là mảng imageData) 
-      const imageData = [
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-        { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-      ];
+    const handleConfirmStageSearch = (results) => {
       setStageConfirm(true);
       setStageResults([]);
       // setShowStageSearch(false);
@@ -218,7 +185,9 @@ function TextImg() {
                 </ErrorBoundary>
               </Col>
               <Col md={8} className="border">
-                <RetrievalRes images = {imageData}/>
+                {singleRes.length > 0  && (
+                  <RetrievalRes images = {singleRes}/>
+                )}
               </Col>
             </Row>
           )
@@ -226,7 +195,9 @@ function TextImg() {
       {value === "results" && tabList.length > 1 && (
         <Row style={{ margin: 10 }}>
           <Col>
-            <RetrievalRes images={imageData} />
+            {singleRes.length > 0  && (
+              <RetrievalRes images={singleRes} />
+            )}
           </Col>
         </Row>
       )}

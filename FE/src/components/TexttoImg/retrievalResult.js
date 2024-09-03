@@ -6,8 +6,9 @@ import Modal from 'react-bootstrap/Modal';
 import './RetrievalRes.css';
 import ImgImg from '../ImgtoImg/ImgImg';
 
-function RetrievalRes(imagesObject) {
-  const images = imagesObject['images']
+function RetrievalRes(imagesList) {
+  console.log('iamges',imagesList)
+  const images = imagesList['images']
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -24,7 +25,7 @@ function RetrievalRes(imagesObject) {
 
   const startIndex = (currentPage - 1) * imagesPerPage;
   const selectedImages = images.slice(startIndex, startIndex + imagesPerPage);
-
+  // console.log("selected", selectedImages)
   const handleImageClick = (image) => {
     setSelectedImage(image);
     setShowModal(true);
@@ -55,9 +56,9 @@ function RetrievalRes(imagesObject) {
             <Card>
               <div className='image-container'>
                 <div className='img-id text-center'>{image.id} - {image.vid}</div>
-                <Card.Img variant="top" src={image.src} style={{ maxWidth: '300px', height: 'auto', objectFit: 'cover' }} />
-                  <Row className='hover-container text-center' style={{marginLeft:0}}>
-                    <div className='img-descript'>{image.description}</div>
+                <Card.Img variant="top" src={`data:image/jpeg;base64,${image.images}`} style={{ maxWidth: '300px', height: 'auto', objectFit: 'cover' }} />
+                  <Row className='hover-container text-center' style={{margin:0}}>
+                    <div className='img-descript'>aa</div>
                     <Col>
                       <span class="material-symbols-outlined" onClick={() => handleImageClick(image)} style={{cursor:'pointer'}}>info</span> 
                       <span class="material-symbols-outlined" onClick={ImgImg} style={{cursor:'pointer'}}>photo_library</span>
@@ -75,11 +76,11 @@ function RetrievalRes(imagesObject) {
             <Col>
               <div className='text-center' style={{fontSize:'1.5rem', fontWeight:'bold'}}>Frame ID: {selectedImage.id}</div>
               <img
-                src={selectedImage.src}
-                alt={selectedImage.description}
+                src={`data:image/jpeg;base64,${selectedImage.images}`} 
+                alt={selectedImage.info}
                 style={{ width: '100%' }}
               />
-              <div className='text-center' style={{fontSize:'1.2rem'}}>{selectedImage.description}</div>
+              {/* <div className='text-center' style={{fontSize:'1.2rem'}}>{selectedImage.description}</div> */}
             </Col>
           )}
         </Modal.Body>
