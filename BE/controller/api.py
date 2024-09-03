@@ -1,5 +1,6 @@
 from flask import request, Blueprint, request, jsonify
 from BE import processing
+from milvus.utils.function import search_query
 
 api_bp = Blueprint('api', __name__)
 
@@ -44,3 +45,11 @@ def get_result_by_text():
         return {'result': f'You entered: {text}'}
     else:
         return {'error': 'No text provided'}, 400
+    
+
+
+
+'''
+* must be covered by Multi_modality
+search_query("dog and dog")
+'''

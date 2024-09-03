@@ -1,8 +1,22 @@
-# Đọc file và lưu mỗi dòng thành phần tử của danh sách
-with open('/mnt/mmlab2024/datasets/thi/image_vectors/Videos_L01/video/L01_V001/L01_V001.txt', 'r') as file:
-    lines = file.readlines()
+from encode_query import encode_query
+import sys
+import os
+import glob
+import tqdm
 
-# Loại bỏ ký tự xuống dòng '\n' khỏi mỗi dòng (tùy chọn)
-lines = [line.strip() for line in lines]
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-print(lines[0])
+import milvus.config
+from milvus.utils.function import *
+
+
+# create_index('image_collection', metric_type='L2')
+
+load_collection('image_collection')
+
+print("Results")
+print(search_query("A dog"))
+
+
+# print(encode_query("abc").cpu().numpy()[0].tolist())
+
