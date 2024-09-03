@@ -43,8 +43,8 @@ const SearchOption = ({ state, setState, onSearch }) => {
     setState(prevState => ({ ...prevState, weights: newWeights }));
   };
 
-  const handleConfirmSearch = () => {
-    const result = {
+  const handleConfirmSearch = async () => {
+    const inputSearch = {
       query: state.textareaValues.searchText || '',
       ocr: {
         query: state.textareaValues.ocrText || '',
@@ -59,8 +59,27 @@ const SearchOption = ({ state, setState, onSearch }) => {
         weight: state.weights.OD,
       },
     };
-    console.log(result);
-    onSearch(result); 
+    try {
+      const response = await fetch('/api/get-single', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputSearch),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Result trả về",result)
+        onSearch(result);  // Gửi dữ liệu kết quả đến component hiển thị kết quả
+      } else {
+        console.error('Error:', response.statusText);
+      }
+    } catch (error) {
+      console.log(inputSearch)
+      console.error('Error:', error);
+    }
+    
   };
 
   return (
