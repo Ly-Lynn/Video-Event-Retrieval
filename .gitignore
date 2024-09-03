@@ -1,3 +1,4 @@
 node_modules
-DeepSolo++/pretrained_model
 volumes
+BE/OCR/DeepSolo/pretrained_model/
+BE/OCR/DeepSolo/outputs/
