@@ -7,8 +7,8 @@ from argparse import ArgumentParser
 from mmdet.apis import (async_inference_detector, inference_detector,
                         init_detector, show_result_pyplot)
 import mmcv
-# import mmcv_custom  # noqa: F401,F403
-# import mmdet_custom  # noqa: F401,F403
+import mmcv_custom  # noqa: F401,F403
+import mmdet_custom  # noqa: F401,F403
 import os.path as osp
 
 
