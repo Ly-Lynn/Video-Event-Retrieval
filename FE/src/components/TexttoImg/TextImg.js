@@ -131,6 +131,7 @@ function TextImg() {
     };
   
     const handleConfirmStageSearch = (results) => {
+      // Gửi data về BE
       setStageConfirm(true);
       setStageResults([]);
       // setShowStageSearch(false);

@@ -7,7 +7,7 @@ import './RetrievalRes.css';
 import ImgImg from '../ImgtoImg/ImgImg';
 
 function RetrievalRes(imagesList) {
-  console.log('iamges',imagesList)
+  // console.log('iamges',imagesList)
   const images = imagesList['images']
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
@@ -73,7 +73,7 @@ function RetrievalRes(imagesList) {
       <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Body style={{paddingTop:0, paddingBottom:0}}>
           {selectedImage && (
-            <Col>
+            <Col draggable>
               <div className='text-center' style={{fontSize:'1.5rem', fontWeight:'bold'}}>Frame ID: {selectedImage.id}</div>
               <img
                 src={`data:image/jpeg;base64,${selectedImage.images}`} 
