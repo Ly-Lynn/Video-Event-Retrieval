@@ -59,6 +59,7 @@ const SearchOption = ({ state, setState, onSearch }) => {
         weight: state.weights.OD,
       },
     };
+
     try {
       const response = await fetch('/api/get-single', {
         method: 'POST',

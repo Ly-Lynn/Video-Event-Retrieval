@@ -35,10 +35,16 @@ def encode_b64(images) -> list:
     Input: list[Frame] là kết quả cuối cùng của quá trình truy vấn
     Return: list các images được encode bằng hàm encode64
     '''
+def change_to_wbp (img_path):
+    img = Image.open(img_path)
+    
+
 def score_calculate(query_encoded, frame):
     '''
     Tính điểm cho 1 frame gồm tổng khoảng cách query tới frame + trọng số * điểm thành phần
     '''
+
+
 def ranking(query_encoded, listOCR, w_ocr, listASR, w_asr, listOD, w_od):
     '''
     Input:
