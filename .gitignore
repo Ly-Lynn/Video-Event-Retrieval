@@ -3,3 +3,4 @@ volumes
 BE/OCR/DeepSolo/pretrained_model/
 BE/OCR/DeepSolo/outputs/
 BE/OCR/DeepSolo/test_imgs
+FE/public/AIC
