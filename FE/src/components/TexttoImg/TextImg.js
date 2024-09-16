@@ -1,45 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Button, Row, Col } from "react-bootstrap";
 import SearchOption from "./SearchOption";
-import RetrievalRes from "./retrievalResult";
+import RetrievalRes from "./RetrievalRes/retrievalResult";
 import ErrorBoundary from "../debug/ErrorBoundary";
 import StageSearch from "./StageSearch/StageSearch";
 
 function TextImg() {
-  // const imageData = [
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  //   { id: 1, vid:'L01_V002', src: "/test_imgs/img3.png", description: 'Description 1' },
-  // ];
   const [value, setValue] = useState(0);
   const [tabList, setTabList] = useState([{ key: 0, id: 0 }]);
   const [tabData, setTabData] = useState({

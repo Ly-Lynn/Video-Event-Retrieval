@@ -1,0 +1,119 @@
+/* RetrievalRes.css */
+.material-symbols-outlined {
+  margin-left: 0.3rem;
+}
+.image-container {
+  /* flex: 0 0 20%; */
+    position: relative;
+    display: inline-block;
+  }
+  
+  .hover-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-container:hover .hover-container{
+    opacity: 1;
+  }
+  .active {
+    font-weight: bold;
+  }
+
+  .img-style {
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .label {
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+}
+
+.label-1 {
+    background-color: aqua;
+}
+
+.label-2 {
+    background-color: coral;
+}
+
+.label-3 {
+    background-color: lightgreen;
+}
+
+.label-4 {
+    background-color: lightpink;
+}
+
+.label-5 {
+    background-color: gold;
+}
+.image-col {
+  flex: 0 0 20%;
+  padding: 0.5rem;
+  /* min-height: 200px; */
+}
+
+.submit-button {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.drag-handle {
+  cursor: grab; /* Đảm bảo con trỏ chuột đúng khi kéo */
+}
+/* Add temporary styles for debugging */
+.debug-dragging {
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  grid-gap: 10px; 
+  overflow: hidden;
+  grid-auto-rows: minmax(100px, auto)
+}
+
+.img-checkbox {
+  z-index: 100;
+  position: absolute;
+  cursor: pointer;
+  transform: scale(1.2);
+  margin: 0.5rem 0 0 0.5rem;
+
+}
+.selection-order {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 0, 0, 0.681);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+}
