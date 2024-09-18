@@ -81,14 +81,14 @@
 .drag-handle {
   cursor: grab; /* Đảm bảo con trỏ chuột đúng khi kéo */
 }
-/* Add temporary styles for debugging */
+
 .debug-dragging {
   border: 2px solid red;
   background-color: rgba(255, 0, 0, 0.1);
 }
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
+  grid-template-columns: repeat(6, 1fr); 
   grid-gap: 10px; 
   overflow: hidden;
   grid-auto-rows: minmax(100px, auto)
