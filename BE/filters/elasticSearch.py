@@ -1,6 +1,6 @@
 from elasticsearch import Elasticsearch
 from tqdm import tqdm
-from configs import configs
+from BE.configs import configs_info
 
 def calculate_iou(box1, box2):
     x1, y1, x2, y2 = box1
@@ -38,7 +38,7 @@ def search(query, search_type='ocr'):
                     "od_res": 
                 },{},...] 
     '''
-    client = Elasticsearch(cloud_id=configs['CLOUD_ID'], api_key=configs['API_KEY'])
+    client = Elasticsearch(cloud_id=configs_info['CLOUD_ID'], api_key=configs_info['API_KEY'])
     if search_type == 'ocr' or search_type == 'asr':
         query_terms = query.split() 
 

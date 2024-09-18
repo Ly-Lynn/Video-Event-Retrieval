@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import './RetrievalRes.css';
 import ImgImg from '../../ImgtoImg/ImgImg';
 import config from '../../config.json';
-import { ButtonGroup } from '@mui/material';
+import { ButtonGroup, TextField } from '@mui/material';
 
 function RetrievalRes(initialImages) {
   const [images, setImages] = useState(initialImages['images']);
@@ -15,7 +15,9 @@ function RetrievalRes(initialImages) {
   const imagesPerPage = 25; // 5 rows * 5 columns
 
   const totalPages = Math.ceil(images.length / imagesPerPage);
-
+  const [showSubmitModal, setShowSubmitModal] = useState(false);
+  const [fileName, setFileName] = useState('');
+  const [data, setData] = useState([]);
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
@@ -47,6 +49,37 @@ function RetrievalRes(initialImages) {
     setCurrentPage(1);
     setSelectedIds([]);
   };
+  const handleSubmit = () => {
+    setShowSubmitModal(true);
+  };
+
+  const handleModalSubmit = async () => {
+    if (fileName) {
+
+      try {
+        const response = await fetch('/api/get-submission', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            file: fileName,
+            data: images  
+          }),
+        });
+        if (response.ok) {
+          console.log("Saved csv successfully")
+        } else {
+          console.error('Error:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      } 
+
+      setShowSubmitModal(false);
+      setFileName('')
+    }
+  }
 
   return (
     <>
@@ -64,7 +97,7 @@ function RetrievalRes(initialImages) {
             />
             <ButtonGroup>
               <Button variant='primary' onClick={sortImages} style={{ marginTop: 0, marginRight: '0.5rem' }}>Sort</Button>
-              <Button variant='success' style={{ marginTop: 0 }}>Submit</Button>
+              <Button variant='success' onClick={handleSubmit} style={{ marginTop: 0 }}>Submit</Button>
             </ButtonGroup>
           </Stack>
 
@@ -74,7 +107,30 @@ function RetrievalRes(initialImages) {
             selectedIds={selectedIds}
           />
         </>
+        
       )}
+      <Modal show={showSubmitModal} onHide={() => setShowSubmitModal(false)}>
+            <Modal.Header>
+              <Modal.Title>Enter File Name</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <TextField
+            style={{ width: '450px' }}
+              helperText="Please enter filename"
+              id="demo-helper-text-misaligned"
+              label="filename"
+              onChange={(e) => setFileName(e.target.value)}
+            />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShowSubmitModal(false)}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleModalSubmit}>
+                Submit
+              </Button>
+            </Modal.Footer>
+          </Modal>
     </>
   );
 }
@@ -150,7 +206,7 @@ function DataProcessing({ images, onCheckboxChange, selectedIds }) {
             </Col>
           )}
         </Modal.Body>
-      </Modal>
+      </Modal>  
     </>
   );
 }

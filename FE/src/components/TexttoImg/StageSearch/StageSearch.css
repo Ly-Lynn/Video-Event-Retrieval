@@ -60,4 +60,27 @@ ul, ol{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     /* transition: all 0.5s ease; */
   }
-  
+
+  .image-col-stage-1{
+    flex: 0 0 calc(100% / 6); /*6 images in a row for 2 stages and 3 stages*/
+    padding: 1rem;
+  }
+  .image-col-stage-2{
+    flex: 0 0 calc(100% / 8); /*8 images in a row for 4 stages*/
+    padding: 1rem;
+  }
+  .image-col-stage-3{
+    flex: 0 0 calc(100% / 5); /*5 images in a row for 5 stages*/
+    padding: 1rem;
+  }
+
+  .group-3-img{
+    padding: '0px';
+    flex-basis: '25%'; 
+    max-width: '25%' ;
+  }
+  .group-3{
+    border: 2px dashed #ff0000;
+    padding: 0.5rem;
+    border-radius: None;
+  }

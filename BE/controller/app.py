@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from api import api_bp
+from BE.controller.api import api_bp
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})

@@ -72,7 +72,7 @@ const SearchOption = ({ state, setState, onSearch }) => {
       if (response.ok) {
         const result = await response.json();
         console.log("Result trả về",result)
-        onSearch(result);  // Gửi dữ liệu kết quả đến component hiển thị kết quả
+        onSearch(result);  
       } else {
         console.error('Error:', response.statusText);
       }

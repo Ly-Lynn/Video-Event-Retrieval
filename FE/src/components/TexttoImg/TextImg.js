@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Button, Row, Col } from "react-bootstrap";
+import { Navbar, Nav, Row, Col } from "react-bootstrap";
 import SearchOption from "./SearchOption";
 import RetrievalRes from "./RetrievalRes/retrievalResult";
 import ErrorBoundary from "../debug/ErrorBoundary";
 import StageSearch from "./StageSearch/StageSearch";
+import StageSearchRes from "./StageSearch/StageSearchRes";
 
 function TextImg() {
   const [value, setValue] = useState(0);
@@ -22,7 +23,6 @@ function TextImg() {
   const [stageResults, setStageResults] = useState([]);
   const [showStageSearch, setShowStageSearch] = useState(false);
   const [stageConfirm, setStageConfirm] = useState(false);
-  // const [stageRes, setStageRes] = useState([])
   const [singleRes, setSingleRes] = useState([]);
 
   useEffect(() => {
@@ -30,7 +30,6 @@ function TextImg() {
   }, [tabList]);
 
 
-    // Add a new tab
     const addTab = () => {
       setTabList((prevTabList) => {
         const id = prevTabList.length > 0 ? prevTabList[prevTabList.length - 1].id + 1 : 0;
@@ -51,7 +50,7 @@ function TextImg() {
         },
       }));
     
-      setValue(newTabId); // Switch to the newly added tab
+      setValue(newTabId); 
     };
     
   
@@ -82,8 +81,6 @@ function TextImg() {
       setValue(newValue);
       console.log(newValue)
     };
-  
-    // Save data for a specific tab
     const saveTabData = (tabId, updateFn) => {
       setTabData((prevData) => ({
         ...prevData,
@@ -91,22 +88,23 @@ function TextImg() {
       }));
     };
     const handleSearch = (tabId, result) => {
-      setStageResults((prevResults) => [...prevResults, { tabId, data: result }]);
-      console.log("res",result)
       setSingleRes(result);
     };
   
     const handleConfirmStageSearch = (results) => {
       // Gửi data về BE
+      console.log(`CONFIRMED`, results)
+      setStageResults(results);
       setStageConfirm(true);
-      setStageResults([]);
-      // setShowStageSearch(false);
     };
+    useEffect(() => {
 
-    const handleDeleteResult = (tabId) => {
-      setStageResults((prevResults) => prevResults.filter(result => result.tabId !== tabId));
-    };
+    if (stageConfirm) {
+      setShowStageSearch(false);
+    }
+  }, [stageResults, stageConfirm]);
 
+    
   return (
     <div>
       <Navbar >
@@ -130,7 +128,7 @@ function TextImg() {
             </div>
             {stageConfirm && tabList.length > 1 && (
               <Nav.Item>
-                <Nav.Link active={value === "results"} onClick={() => setValue("results")}>
+                <Nav.Link active={value === -1} onClick={() => setValue(-1)}>
                   Results
                 </Nav.Link>
               </Nav.Item>
@@ -159,21 +157,22 @@ function TextImg() {
             </Row>
           )
       )}
-      {value === "results" && tabList.length > 1 && (
+      {value === -1 && tabList.length > 1 && (
         <Row style={{ margin: 10 }}>
           <Col>
-            {singleRes.length > 0  && (
-              <RetrievalRes images={singleRes} />
+            {stageResults.length > 0  && (
+              <StageSearchRes images={stageResults} />
+              // <div>HELLO</div>
             )}
           </Col>
         </Row>
       )}
       {showStageSearch && (
         <StageSearch
-        results={stageResults}
+        results={tabData}
         onConfirm={handleConfirmStageSearch}
         show={showStageSearch}
-        onDeleteResult={handleDeleteResult} 
+        onDeleteResult={deleteTab} 
       />
       )}
       

@@ -2,7 +2,7 @@
     Xử lí offline dữ liệu: gồm xử lí OCR, ASR, OD và thêm dữ liệu vào Elastic Search
 '''
 from elasticsearch import Elasticsearch, helpers
-from configs import configs
+from BE.configs import configs_info
 import json
 import os
 
@@ -10,12 +10,12 @@ def load_json(filename):
     with open(filename, 'r', encoding='utf-8') as file:
         return json.load(file)
 
-ocr = load_json(configs['OCR_DATA'])
-asr = load_json(configs['ASR_DATA'])
-od = load_json(configs['OD_DATA'])
+ocr = load_json(configs_info['OCR_DATA'])
+asr = load_json(configs_info['ASR_DATA'])
+od = load_json(configs_info['OD_DATA'])
 
 def add_to_elastic(data_list):
-    client = Elasticsearch(cloud_id=configs['CLOUD_ID'], api_key=configs['API_KEY'])
+    client = Elasticsearch(cloud_id=configs_info['CLOUD_ID'], api_key=configs_info['API_KEY'])
     actions = [
         {
             "_index": "frames",
@@ -35,7 +35,7 @@ def createElastic():
     Input: list[frameIDs]
     Return: none
     '''
-    llist = os.listdir(configs['FRAMES_PATH'])
+    llist = os.listdir(configs_info['FRAMES_PATH'])
     
     frameIDs = [os.path.splitext(each)[0] for each in llist]
     data_list = []

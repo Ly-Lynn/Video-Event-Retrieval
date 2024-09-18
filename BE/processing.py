@@ -2,7 +2,7 @@ import os
 import base64
 import io
 from PIL import Image
-from configs import configs
+from BE.configs import configs_info
 from filters.stage_processing import frames_sorting
 from filters.elasticSearch import search
 from core_model import call_core_model

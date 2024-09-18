@@ -19,7 +19,47 @@ const StageSearch = ({ results, onConfirm, show, onDeleteResult }) => {
 
     if (!show) return null;
 
+    const handleConfirmSearchStage = async () => {
+        const finalRes = {}
+        Object.entries(results).map(([key, value]) => (
+            finalRes[key] = {
+                query: value.textareaValues['searchText'],
+                ocr: {
+                    query: value.textareaValues['ocrText'],
+                    weight: value.weights['OCR']
+                },
+                asr: {
+                    query: value.textareaValues['asrText'],
+                    weight: value.weights['ASR']
+                },
+                od: {
+                    results: value.results,
+                    weight: value.weights['OD']
+                }
+            }
+        ))
     
+        try {
+          const response = await fetch('/api/get-stages', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(finalRes),
+          });
+    
+          if (response.ok) {
+            const result = await response.json();
+            console.log("Result of stages", result)
+            onConfirm(result);  
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        } catch (error) {
+          console.log(finalRes)
+          console.error('Error:', error);
+        } 
+      };
       
     return (
         <>
@@ -33,37 +73,36 @@ const StageSearch = ({ results, onConfirm, show, onDeleteResult }) => {
                 </span>
                 </div>
                 <div className="custom-modal-body">
-                {results.map((result, index) => (
-                    <div key={index}>
+                {Object.entries(results).map(([key, value]) => (
+                    <div key={key}>
                         <Col className='d-flex'>
-                            <span class="material-symbols-outlined" style={{color:"red", cursor:"pointer"}} onClick={() => onDeleteResult(result.tabId)}>delete</span>
-                            <div style={{fontWeight:"bolder"}}>Stage {result.tabId}:</div>
+                            <div style={{fontWeight:"bolder"}}>Stage {key}:</div>
                         </Col>
                         <dl>
                         {/* <pre>{JSON.stringify(result.data, null, 2)}</pre> */}
-                            <li>Query: {result.data['query']}</li>
+                            <li>Query: {value.textareaValues['searchText']}</li>
                             <li>OCR:
-                                <ul>- query: {result.data['ocr']['query']}</ul>
-                                <ul>- weight: {result.data['ocr']['weight']}</ul>
+                                <ul>- query: {value.textareaValues['ocrText']}</ul>
+                                <ul>- weight: {value.weights['OCR']}</ul>
                             </li>
                             <li>ASR:
-                                <ul>- query: {result.data['asr']['query']}</ul>
-                                <ul>- weight: {result.data['asr']['weight']}</ul>
+                                <ul>- query: {value.textareaValues['asrText']}</ul>
+                                <ul>- weight: {value.weights['ASR']}</ul>
                             </li>
                             <li>Object Detection:
                                 <ol>- objects: 
-                                {result.data['od']['results'].map((res, index) => (
+                                {value.results.map((res, index) => (
                                     <li>{res['object']}: [{res['coordinates'][0]}, {res['coordinates'][1]}, {res['coordinates'][2]}, {res['coordinates'][3]}]</li>
                                 ))}
                                 </ol>
-                                <ul>- weight: {result.data['od']['weight']}</ul>                            
+                                <ul>- weight: {value.weights['OD']}</ul>                            
                             </li>
                         </dl>
                     </div>
                 ))}
                 </div>
                 <div className="custom-modal-footer">
-                <Button variant="primary" onClick={onConfirm}>
+                <Button variant="primary" onClick={handleConfirmSearchStage}>
                     Confirm
                 </Button>
                 </div>
