@@ -75,30 +75,52 @@ const StageSearch = ({ results, onConfirm, show, onDeleteResult }) => {
                 <div className="custom-modal-body">
                 {Object.entries(results).map(([key, value]) => (
                     <div key={key}>
-                        <Col className='d-flex'>
-                            <div style={{fontWeight:"bolder"}}>Stage {key}:</div>
-                        </Col>
-                        <dl>
-                        {/* <pre>{JSON.stringify(result.data, null, 2)}</pre> */}
-                            <li>Query: {value.textareaValues['searchText']}</li>
-                            <li>OCR:
-                                <ul>- query: {value.textareaValues['ocrText']}</ul>
-                                <ul>- weight: {value.weights['OCR']}</ul>
-                            </li>
-                            <li>ASR:
-                                <ul>- query: {value.textareaValues['asrText']}</ul>
-                                <ul>- weight: {value.weights['ASR']}</ul>
-                            </li>
-                            <li>Object Detection:
-                                <ol>- objects: 
+                    <Col className="d-flex">
+                        <div style={{ fontWeight: "bolder" }}>Stage {key}:</div>
+                    </Col>
+                    <dl>
+                        <li>
+                            Query: <span style={{ fontWeight: "bold", color: "red" }}>{value.textareaValues['searchText']}</span>
+                        </li>
+                        <li>
+                            OCR:
+                            <ul>
+                                - query: <span style={{ fontWeight: "bold", color: "blue" }}>{value.textareaValues['ocrText']}</span>
+                            </ul>
+                            <ul>
+                                - weight: <span style={{ fontWeight: "bold", color: "green" }}>{value.weights['OCR']}</span>
+                            </ul>
+                        </li>
+                        <li>
+                            ASR:
+                            <ul>
+                                - query: <span style={{ fontWeight: "bold", color: "blue" }}>{value.textareaValues['asrText']}</span>
+                            </ul>
+                            <ul>
+                                - weight: <span style={{ fontWeight: "bold", color: "green" }}>{value.weights['ASR']}</span>
+                            </ul>
+                        </li>
+                        <li>
+                            Object Detection:
+                            <ol>
+                                - objects:
                                 {value.results.map((res, index) => (
-                                    <li>{res['object']}: [{res['coordinates'][0]}, {res['coordinates'][1]}, {res['coordinates'][2]}, {res['coordinates'][3]}]</li>
+                                    <li key={index}>
+                                        <span style={{ fontWeight: "bold", color: "blue" }}>{res['object']}</span>: [
+                                        <span style={{ fontWeight: "bold", color: "black" }}>{res['coordinates'][0]}</span>, 
+                                        <span style={{ fontWeight: "bold", color: "black" }}>{res['coordinates'][1]}</span>, 
+                                        <span style={{ fontWeight: "bold", color: "black" }}>{res['coordinates'][2]}</span>, 
+                                        <span style={{ fontWeight: "bold", color: "black" }}>{res['coordinates'][3]}</span>]
+                                    </li>
                                 ))}
-                                </ol>
-                                <ul>- weight: {value.weights['OD']}</ul>                            
-                            </li>
-                        </dl>
-                    </div>
+                            </ol>
+                            <ul>
+                                - weight: <span style={{ fontWeight: "bold", color: "green" }}>{value.weights['OD']}</span>
+                            </ul>
+                        </li>
+                    </dl>
+                </div>
+                
                 ))}
                 </div>
                 <div className="custom-modal-footer">
