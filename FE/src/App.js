@@ -10,8 +10,8 @@ import {useState} from 'react';
 import ErrorBoundary from './components/debug/ErrorBoundary';
 
 const tabs = [
-  { title: 'Text to Image', component: <TextImg /> },
-  { title: 'Image to Image', component: <ImgImg /> },
+  { title: 'KIS', component: <TextImg /> },
+  // { title: 'Image to Image', component: <ImgImg /> },
   { title: 'VQA', component: <VQA /> }
 ];
 
@@ -27,7 +27,7 @@ function App() {
 
   return (
     <Container fluid>
-      <h1 className='text-center '>AI Challenge 2024</h1>
+      <h1 className='text-center'></h1>
       <CusTabs tabs={tabs} currentTab={currentTab} onTabClick={handleTabClick} />
       <TabContent currentTab={currentTab}/>
     </Container>
