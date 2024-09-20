@@ -4,7 +4,8 @@ import pandas as pd
 import os
 import sys
 from BE.configs.configs_info import configs as cfg
-# import processing
+from ..processing import process_single, process_stages
+
 # from milvus.utils.function import search_query
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -26,9 +27,9 @@ def get_single ():
     print("data",data)
     
     #--------------TEST---------------
-    with open(r'D:\codePJ\AIC\FE\aic\BE\test\test.json', 'r') as file:
-        results = json.load(file)
-    # results = processing(data)
+    # with open(r'D:\codePJ\AIC\FE\aic\BE\test\test.json', 'r') as file:
+    #     results = json.load(file)
+    results = process_single(data)
     
     return jsonify(results)
     
@@ -48,8 +49,9 @@ def get_stages ():
     data = request.json
     print(data)
     #--------------TEST---------------
-    with open(r'D:\codePJ\AIC\FE\aic\BE\test\test_stage.json', 'r') as file:
-        results = json.load(file)
+    # with open(r'D:\codePJ\AIC\FE\aic\BE\test\test_stage.json', 'r') as file:
+    #     results = json.load(file)
+    results = process_stages(data)
     return jsonify(results)
 
 
@@ -80,8 +82,9 @@ def get_submission():
     output_file = cfg['OUTPUT_PATH'] + receive['file'] + '.csv'
     data = receive['data']
     vid = [dt['vid'] for dt in data]
-    vid_id = [int(dt['id']) for dt in data]
-    df = pd.DataFrame.from_dict({"video_name" : vid, "index" : vid_id})
+    vid_id = [int(dt['id'][9:15]) for dt in data]
+    #vid_id = [int(dt['id']) for dt in data]
+    df = pd.DataFrame.from_dict({"video_name" : vid[0:100], "index" : vid_id[0:100]})
     df.to_csv(output_file, header=False, index=False)
     return jsonify({'status': 'success'})
 

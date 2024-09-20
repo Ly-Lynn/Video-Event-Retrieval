@@ -17,7 +17,7 @@
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-grid-layout": "^1.4.4",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-select": "^5.8.0",
     "react-sortablejs": "^6.1.4",
     "styled-components": "^6.1.12",
