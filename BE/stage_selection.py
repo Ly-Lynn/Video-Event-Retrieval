@@ -4,10 +4,10 @@ def call_distance(frame1, frame2):
   '''
   call distance between two frame
   '''
-  if (frame1[0] != frame2[0]):
+  if (int(frame1[0]) != int(frame2[0])):
     return -1
   else:
-    return abs(frame1[1] - frame2[1])
+    return abs(int(frame1[1]) - int(frame2[1]))
 
 
 def get_frame_id(frame):
@@ -83,14 +83,26 @@ def split_by_video_id(queries_frames, ):
   return queries_frames_by_video_id
 
 
+# def calc_score(queries):
+#   '''
+#   calculate the score of given queries
+#   '''
+#   sum = 0
+#   print(queries)
+#   for query in queries:
+#     sum += query[2]
+#   return sum
+
+
 def calc_score(queries):
   '''
   calculate the score of given queries
   '''
-  sum = 0
+  sum_score = 0
   for query in queries:
-    sum += query[2]
-  return sum
+    sum_score += query[2]
+  distance = int(queries[-1][1]) - int(queries[0][1])
+  return sum_score*distance
 
 
 def get_closet_frames(splited_queries_frames, max_video_id, n_queries):
@@ -117,7 +129,7 @@ def get_closet_frames(splited_queries_frames, max_video_id, n_queries):
 
         cur_frame = splited_queries_frames[query_id][video_id][cur_index[query_id]][1]
 
-        while (cur_frame < last_frame):
+        while (cur_frame <= last_frame):
           cur_index[query_id] += 1
           if (cur_index[query_id] >= len(splited_queries_frames[query_id][video_id])):
             failed = True

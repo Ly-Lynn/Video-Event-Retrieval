@@ -6,7 +6,7 @@ from BE.configs import configs_info
 # from filters.stage_processing import frames_sorting
 # from filters.elasticSearch import search
 # from core_model import call_core_model
-
+from .stage_selection import sort_by_stages
 
 import pandas as pd
 
@@ -120,10 +120,27 @@ def process_single(data):
 
 
 def process_stages(stage_data):
-    stage_result = []
+    input_for_stage_selection = []
     for i, data in stage_data.items():
-        stage_result.append(process_single(data))
-    return stage_result
+        temp_stage_retrieval_result = process_single(data)
+        temp_stage_input = [(i['id'][0:8], i['id'][9:15], i['score']) for i in temp_stage_retrieval_result]
+        input_for_stage_selection.append(temp_stage_input)
+    selection_result = sort_by_stages(input_for_stage_selection)
+    print(selection_result)
+    print('-----------------------')
+    format_selection_result = []
+    for i in selection_result:
+        temp_res =  [{"id" : j,
+            "vid" : j[0:8],
+            "score": 0,
+            "ocr" : [],
+            "asr" : [], 
+            "od" : []} 
+           for j in i] 
+        format_selection_result.append(temp_res)
+    # print(format_selection_result)
+
+    return format_selection_result
 
 
 def processing(data):
