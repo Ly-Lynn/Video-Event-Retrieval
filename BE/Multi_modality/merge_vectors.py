@@ -9,8 +9,10 @@ def merge_vector_save(root : pathlib.Path, output_pt, output_txt):
 
   all_feat = []
   all_key_f = []
-  for pt_file in tqdm(list(all_files)):
-    all_feat.append(torch.load(pt_file))
+  for pt_file in tqdm(list(sorted(all_files))):
+    temp_fea = torch.load(pt_file)
+    all_feat.append(temp_fea)
+    
     txt_file = pt_file.parent / pt_file.stem + '.txt'
     with open(txt_file, 'r') as r:
       temp = r.read().split('\n')

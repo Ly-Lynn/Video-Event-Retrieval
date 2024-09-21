@@ -90,7 +90,7 @@ function StageSearchRes(initialImages) {
           },
           body: JSON.stringify({
             file: fileName,
-            data: images  
+            data: images.flat()  
           }),
         });
         if (response.ok) {
