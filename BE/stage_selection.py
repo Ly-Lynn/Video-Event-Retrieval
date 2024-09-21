@@ -154,11 +154,11 @@ def get_closet_frames(splited_queries_frames, max_video_id, n_queries):
         minDist = dist
         closet_index = cur_index.copy()
 
-      cur_index[0] += 1
       tmp = []
       for i in range(len(closet_index)):
-        tmp.append(splited_queries_frames[i][video_id][closet_index[i]])
+        tmp.append(splited_queries_frames[i][video_id][cur_index[i]])
       ret.append(tmp)
+      cur_index[0] += 1
 
   # sort ret
   ret.sort(
